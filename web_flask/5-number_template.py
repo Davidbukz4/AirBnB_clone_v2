@@ -41,6 +41,7 @@ def number(n):
     """ Returns the string """
     return '{} is a number'.format(n)
 
+
 @app.route('/number_template/<int:n>')
 def number_temp(n):
     """ Returns a string """
