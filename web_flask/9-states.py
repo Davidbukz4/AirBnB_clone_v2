@@ -11,20 +11,19 @@ app.url_map.strict_slashes = False
 
 
 @app.route('/states')
-@app.route('/states/')
-@app.route('/states/<state_id>')
-def state_var(state_id='(nil)'):
+def states():
     """ Returns the state info """
-    items = storage.all('State').values()
-    if state_id != '(nil)':
-        val = "Not found!"
-    else:
-        val = state_id
-    for item in items:
-        if state_id == items.id:
-            val = item
-    return Response(render_template('9-states.html', items=items,
-                                    state_id=val))
+    items = storage.all('State')
+    return render_template('9-states.html', items=items)
+
+
+@app.route('/states/<state_id>')
+def states_slash(state_id):
+    """ Returns the state info """
+    for item in storage.all('State').values():
+        if item.id == state_id
+            return render_template('9-states.html', items=item)
+    return render_template('9-states.html')
 
 
 @app.teardown_appcontext
