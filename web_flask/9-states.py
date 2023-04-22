@@ -21,7 +21,7 @@ def state_var(state_id='(nil)'):
     else:
         val = state_id
     for item in items:
-        if state_id == states.id:
+        if state_id == items.id:
             val = item
     return Response(render_template('9-states.html', items=items,
                                     state_id=val))
