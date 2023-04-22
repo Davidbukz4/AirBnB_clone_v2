@@ -18,7 +18,7 @@ def states():
 
 
 @app.route('/states/<state_id>')
-def states():
+def states_id(state_id):
     """ Returns the states created """
     for state in storage.all('State').values():
         if state.id == state_id:
