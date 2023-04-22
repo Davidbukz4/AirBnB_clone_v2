@@ -10,20 +10,20 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-@app.route('/states')
+@app.route("/states", strict_slashes=False)
 def states():
-    """ Returns the states created """
-    states = storage.all('State')
-    return render_template('8-cities_by_states.html', items=states)
+    """ Returns an html page """
+    states = storage.all("State")
+    return render_template("9-states.html", items=states)
 
 
-@app.route('/states/<state_id>')
-def states_id(state_id):
-    """ Returns the states created """
-    for state in storage.all('State').values():
-        if state.id == state_id:
-            return render_template('8-cities_by_states.html', items=state)
-    return render_template('8-cities_by_states.html', items=state)
+@app.route("/states/<id>", strict_slashes=False)
+def states_id(id):
+    """Displays an HTML page """
+    for state in storage.all("State").values():
+        if state.id == id:
+            return render_template("9-states.html", items=state)
+    return render_template("9-states.html")
 
 
 @app.teardown_appcontext
