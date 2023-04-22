@@ -2,7 +2,7 @@
 """
 Flask web app
 """
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 from models import storage
 
 
@@ -23,7 +23,8 @@ def state_var(state_id='(nil)'):
     for item in items:
         if state_id == states.id:
             val = item
-    return render_template('8-cities_by_states.html', items=items, state_id=val)
+    return Response(render_template('9-states.html', items=items,
+                                    state_id=val))
 
 
 @app.teardown_appcontext
