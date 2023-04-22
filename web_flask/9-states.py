@@ -2,7 +2,7 @@
 """
 Flask web app
 """
-from flask import Flask, render_template, Response
+from flask import Flask, render_template
 from models import storage
 
 
@@ -13,16 +13,16 @@ app.url_map.strict_slashes = False
 @app.route('/states')
 def states():
     """ Returns the state info """
-    items = storage.all('State')
-    return render_template('9-states.html', items=items)
+    states = storage.all('State')
+    return render_template('9-states.html', state=states)
 
 
 @app.route('/states/<state_id>')
-def states_slash(state_id):
+def states_slash(id):
     """ Returns the state info """
-    for item in storage.all('State').values():
-        if item.id == state_id
-            return render_template('9-states.html', items=item)
+    for state in storage.all('State').values():
+        if state.id == id
+            return render_template('9-states.html', state=state)
     return render_template('9-states.html')
 
 
